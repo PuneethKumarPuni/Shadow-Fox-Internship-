@@ -28,7 +28,7 @@
 - Number formatting using `format()`.
 - Arithmetic operations and mathematical formulas.
 - Type casting and conversion.
-- Real-world problem-solving using Python.
+
 
 ### Author:
 Intern Puneeth Kumar P.
