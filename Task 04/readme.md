@@ -5,7 +5,6 @@
 ### Objective:
 This task focuses on using conditional (`if-elif-else`) statements in Python to make decisions based on user input.
 
----
 
 ### Sub-Tasks:
 
@@ -36,7 +35,6 @@ This task focuses on using conditional (`if-elif-else`) statements in Python to 
   - "They don't belong to the same country" otherwise.
   - Handles invalid cities.
 
----
 
 ### Python Concepts Practiced:
 - `if`, `elif`, `else` statements
@@ -45,10 +43,7 @@ This task focuses on using conditional (`if-elif-else`) statements in Python to 
 - Custom function creation
 - String formatting and conditional logic
 
----
 
-
----
 
 ### Author:
 Intern Puneeth Kumar P.
