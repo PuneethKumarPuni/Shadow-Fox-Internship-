@@ -8,7 +8,6 @@ This project is a part of **Task 3** and involves performing exploratory data an
 
 - Create a Jupyter Notebook from scratch.
 - Select a compelling dataset for exploration.
-- Formulate a focused research question.
 - Use visualization and analysis techniques to gain insights and provide solutions.
 
 1. **Dataset Loading & Cleaning**
