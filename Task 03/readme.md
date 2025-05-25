@@ -6,7 +6,6 @@
 
 This project is a part of **Task 3** and involves performing exploratory data analysis using Jupyter Notebook. The goal is to select an interesting dataset, define a research question, perform thorough data analysis, and use data visualization techniques to extract meaningful insights.
 
-- Create a Jupyter Notebook from scratch.
 - Select a compelling dataset for exploration.
 - Use visualization and analysis techniques to gain insights and provide solutions.
 
