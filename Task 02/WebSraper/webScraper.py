@@ -1,10 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
-from reportlab.lib.pagesizes import letter
-from reportlab.pdfgen import canvas
-from reportlab.lib.utils import simpleSplit
-from reportlab.lib import colors
+import csv
 
 class WebScraper:
     def __init__(self, base_url):
@@ -34,60 +31,26 @@ class WebScraper:
                 data[key] = [el.get_text(strip=True) for el in elements]
         return data
 
-    def save_to_pdf(self, data, filename):
-        c = canvas.Canvas(filename, pagesize=letter)
-        width, height = letter
-        margin = 50
-        y = height - margin
+    def save_to_csv(self, data, filename):
+        try:
+            with open(filename, mode='w', newline='', encoding='utf-8') as file:
+                writer = csv.writer(file)
+                writer.writerow(['Field', 'Value'])
 
-        def draw_heading(text, size=16, space_after=20):
-            nonlocal y
-            if y < margin + 50:
-                c.showPage()
-                y = height - margin
-            c.setFont("Helvetica-Bold", size)
-            c.setFillColor(colors.darkblue)
-            c.drawString(margin, y, text)
-            y -= space_after
-            c.setFillColor(colors.black)
+                for key, value in data.items():
+                    label = key.replace("_", " ").title()
+                    if isinstance(value, list):
+                        value_str = ', '.join(value)
+                    elif value:
+                        value_str = value
+                    else:
+                        value_str = "N/A"
+                    writer.writerow([label, value_str])
+            print(f"CSV file created successfully: {filename}")
+        except Exception as e:
+            print("Failed to write CSV:", e)
 
-        def draw_field(label, value, size=12, indent=20, space_after=15):
-            nonlocal y
-            if y < margin + 60:
-                c.showPage()
-                y = height - margin
-
-            c.setFont("Helvetica-Bold", size)
-            c.drawString(margin, y, f"{label}:")
-            y -= 15
-            c.setFont("Helvetica", size)
-
-            if isinstance(value, list):
-                for item in value:
-                    lines = simpleSplit(item, "Helvetica", size, width - margin * 2 - indent)
-                    for line in lines:
-                        c.drawString(margin + indent, y, f"- {line}")
-                        y -= 15
-            elif value:
-                lines = simpleSplit(value, "Helvetica", size, width - margin * 2 - indent)
-                for line in lines:
-                    c.drawString(margin + indent, y, line)
-                    y -= 15
-            else:
-                c.drawString(margin + indent, y, "N/A")
-                y -= 15
-            y -= space_after
-
-        draw_heading("Scraped Data from books.toscrape.com", size=18)
-
-        for key, value in data.items():
-            label = key.replace("_", " ").title()
-            draw_field(label, value)
-
-        c.save()
-        print(f"PDF created successfully: {filename}")
-
-def scrape_and_generate_pdf():
+def scrape_and_generate_csv():
     scraper = WebScraper("https://books.toscrape.com/")
     soup = scraper.get_page("/")
     if not soup:
@@ -100,7 +63,7 @@ def scrape_and_generate_pdf():
     }
 
     scraped_data = scraper.extract_data(soup, selectors)
-    scraper.save_to_pdf(scraped_data, "scraped_output.pdf")
+    scraper.save_to_csv(scraped_data, "scraped_output.csv")
 
 if __name__ == "__main__":
-    scrape_and_generate_pdf()
+    scrape_and_generate_csv()

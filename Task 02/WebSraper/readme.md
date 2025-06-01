@@ -15,14 +15,14 @@ The scraper focuses on:
 - Fetching web pages with HTTP requests.
 - Parsing HTML content with BeautifulSoup.
 - Extracting targeted data using CSS selectors.
-- Saving the extracted data in a formatted PDF.
+- Saving the extracted data in a formatted csv.
 - Handling network and request errors gracefully.
 
 ## Features
 
 - Scrapes data such as titles, descriptions, and menu items from web pages.
 - Supports multiple elements per selector, storing lists when applicable.
-- Generates a clean PDF report of the scraped data using the ReportLab library.
+- Generates a clean csv report of the scraped data.
 - Implements basic error handling to manage HTTP request failures.
 
 ## Technologies Used
@@ -30,14 +30,14 @@ The scraper focuses on:
 - Python 3.x
 - `requests` - for making HTTP requests.
 - `BeautifulSoup` (bs4) - for parsing and extracting HTML content.
-- `ReportLab` - for generating PDF documents.
+
 
 ## How It Works
 
 1. Initialize the `WebScraper` class with the base URL of the target website.
 2. Fetch the HTML content of the homepage or specified path.
 3. Extract data based on given CSS selectors for elements like titles and navigation links.
-4. Format and save the extracted data into a PDF file.
+4. Format and save the extracted data into a csv file.
 5. Print a success message upon PDF creation.
 
 ## Setup & Usage
@@ -45,7 +45,7 @@ The scraper focuses on:
 1. Install required Python packages (preferably in a virtual environment):
 
    ```bash
-   pip install requests beautifulsoup4 reportlab
+   pip install requests beautifulsoup4 
    ```
 
 2. Run the script:
@@ -54,13 +54,13 @@ The scraper focuses on:
    python scraper.py
    ```
 
-3. The scraper will fetch data from the specified website and generate a PDF named `scraped_output.pdf` in the current directory.
+3. The scraper will fetch data from the specified website and generate a CSV file  named `scraped_output.csv` in the current directory.
 
 ## Customization
 
 - Change the target website URL by modifying the `base_url` in the `WebScraper` initialization.
 - Update the CSS selectors in the `selectors` dictionary to extract different or additional data from the target site.
-- Modify the PDF formatting in the `save_to_pdf` method to customize the appearance of the output report.
+- And Saved the scrapped output into a csv file
 
 ## Error Handling
 
